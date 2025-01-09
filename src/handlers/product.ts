@@ -7,11 +7,11 @@ export const getProducts = async (req, res) => {
             id: req.user.id
         },
         include: {
-            Product: true
+            products: true
         }
     })
 
-    res.json({data: user.Product})
+    res.json({data: user.products})
 }
 
 export const getOneProduct = async (req, res) => {
@@ -28,14 +28,14 @@ export const getOneProduct = async (req, res) => {
 }
 
 export const createProduct = async (req, res) => {
-    const proudct = await prisma.product.create({
+    const product = await prisma.product.create({
         data: {
             name: req.body.name,
             belongsToId: req.user.id
         }
     })
 
-    res.json({data: proudct})
+    res.json({data: product})
 }
 
 export const updateProduct = async (req, res) => {
@@ -48,17 +48,20 @@ export const updateProduct = async (req, res) => {
             name: req.body.name
         }
     })
-
+    
     res.json({data: updated})
 }
 
 export const deleteProduct = async (req, res) => {
-    const deleted = await prisma.product.delete({
-        where: {
-            id: req.params.id,
-            belongsToId: req.user.id
-        }
-    })
-
-    req.json({data: deleted})
+    try { 
+        const deleted = await prisma.product.delete({ 
+            where: { belongsToId: req.user.id, id: req.params.id } 
+        }) 
+        res.status(200)
+        res.json({data: deleted}) 
+    } catch (error) { 
+        console.log(error) 
+        res.status(403) 
+        res.json({error: error}) 
+    } 
 }
