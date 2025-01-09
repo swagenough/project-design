@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}))
 app.get('/', (req, res) => {
     console.log('welcome to express')
     res.status(200)
-    res.json({message: 'hello'})
+    res.json({message: 'wassup guys'})
 })
 
 app.use('/api', protect, router)

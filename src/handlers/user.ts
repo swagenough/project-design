@@ -23,7 +23,7 @@ export const signin = async (req, res) => {
     const isValid = await comparePasswords(req.body.password, user.password)
 
     if (!isValid) {
-        res.status(401)
+        res.status(400)
         res.json({message: 'Invalid Password'})
         return
     }

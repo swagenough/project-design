@@ -64,7 +64,7 @@ export const deleteProduct = async (req, res) => {
         res.json({data: deleted}) 
     } catch (error) { 
         console.log(error) 
-        res.status(403) 
+        res.status(400) 
         res.json({error: error}) 
     } 
 }
