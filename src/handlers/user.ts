@@ -24,7 +24,7 @@ export const signin = async (req, res) => {
 
     if (!isValid) {
         res.status(400)
-        res.json({message: 'Invalid Password'})
+        res.json({message: 'Wrong Password'})
         return
     }
 
