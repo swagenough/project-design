@@ -28,11 +28,11 @@ app.post('/signin', signin)
 
 app.use((err, req, res, next) => {
     if (err.type === 'auth') {
-        res.status(400).json({message: 'auth error'})
+        res.status(400).json({message: 'Authorization Error, same name?'})
     } else if (err.type === 'input') {
-        res.status(400).json({message: 'invalid input'})
+        res.status(400).json({message: 'You made the wrong input dude'})
     } else {
-        res.status(500).json({message: 'in server handler'})
+        res.status(500).json({message: `Server handler error, ${err}`})
     }
 })
 
