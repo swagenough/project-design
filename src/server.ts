@@ -13,9 +13,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 app.get('/', (req, res, next) => {
-    // console.log('welcome to express')
-    // res.status(200)
-    // res.json({message: 'wassup guys'})
     setTimeout(() => {
         next(new Error('hello'))
     }, 1)
