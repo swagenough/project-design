@@ -99,6 +99,7 @@ export const updateUpdates = async (req, res, next) => {
         
     } catch (e) {
         console.log(e)
+        e.type = 'input'
         next(e)
     }
 }

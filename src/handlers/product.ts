@@ -2,17 +2,22 @@ import { error } from 'console'
 import prisma from '../db'
 
 /// Get all product
-export const getProducts = async (req, res) => {
-    const user = await prisma.user.findUnique({
-        where: {
-            id: req.user.id
-        },
-        include: {
-            products: true
-        }
-    })
-
-    res.json({data: user.products})
+export const getProducts = async (req, res, next) => {
+    try {
+        const user = await prisma.user.findUnique({
+            where: {
+                id: req.user.id
+            },
+            include: {
+                products: true
+            }
+        })
+    
+        res.json({data: user.products})    
+    } catch (e) {
+        e.type = 'input'
+        next(e)
+    }
 }
 
 export const getOneProduct = async (req, res, next) => {
@@ -63,10 +68,9 @@ export const updateProduct = async (req, res, next) => {
         res.json({data: updated})
 
     } catch (e) {
-        console.log(error)
+        console.log(e)
+        e.type = 'input'
         next(e)
-        res.status(400)
-        res.json({error: error})
     }
 }
 
