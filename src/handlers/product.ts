@@ -1,3 +1,4 @@
+import { error } from 'console'
 import prisma from '../db'
 
 /// Get all product
@@ -14,16 +15,21 @@ export const getProducts = async (req, res) => {
     res.json({data: user.products})
 }
 
-export const getOneProduct = async (req, res) => {
-    const id = req.params.id
-    const product = await prisma.product.findFirst({
-        where: {
-            id,
-            belongsToId: req.user.id
-        }
-    })
-
-    res.json({data: product})
+export const getOneProduct = async (req, res, next) => {
+    try {
+        const id = req.params.id
+        const product = await prisma.product.findFirst({
+            where: {
+                id,
+                belongsToId: req.user.id
+            }
+        })
+    
+        res.json({data: product})
+    } catch (e) {
+        e.type = 'input'
+        next(e)
+    }
 }
 
 export const createProduct = async (req, res, next) => {
@@ -37,22 +43,31 @@ export const createProduct = async (req, res, next) => {
 
         res.json({data: product})
     } catch (e) {
+        e.type = 'input'
         next(e)
     }
 }
 
-export const updateProduct = async (req, res) => {
-    const updated = await prisma.product.update({
-        where: {
-            id: req.params.id,
-            belongsToId: req.user.id
-        },
-        data: {
-            name: req.body.name
-        }
-    })
-    
-    res.json({data: updated})
+export const updateProduct = async (req, res, next) => {
+    try {
+        const updated = await prisma.product.update({
+            where: {
+                id: req.params.id,
+                belongsToId: req.user.id
+            },
+            data: {
+                name: req.body.name
+            }
+        })
+        
+        res.json({data: updated})
+
+    } catch (e) {
+        console.log(error)
+        next(e)
+        res.status(400)
+        res.json({error: error})
+    }
 }
 
 export const deleteProduct = async (req, res) => {

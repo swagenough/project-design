@@ -25,15 +25,15 @@ export const protect = (req, res, next) => {
 
     if (!bearer) {
         res.status(401)
-        res.json({message : 'not authorized'})
+        res.json({message : '401 Unauthorized'})
         return
     }
 
     const [, token] = bearer.split(' ')
 
     if (!token) {
-        res.status(401)
-        res.json({message : 'not valid token'})
+        res.status(402)
+        res.json({message : '402 Invalid Token'})
         return
     }
 
@@ -44,7 +44,7 @@ export const protect = (req, res, next) => {
     } catch (e) {
         console.error(e)
         res.status(401)
-        res.json({message : 'not valid token'})
+        res.json({message : '402 Invalid Token'})
         return
     }
 }
