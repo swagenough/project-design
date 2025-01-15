@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
+    "cross-env": "^7.0.3",
     "prisma": "^6.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
