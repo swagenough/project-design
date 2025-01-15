@@ -4,5 +4,6 @@
       "outDir": "dist",
       "lib": ["esnext"],
       "esModuleInterop": true
-    }
+    },
+    "include": ["src/**/*.ts"]
 }
