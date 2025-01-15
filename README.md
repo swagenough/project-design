@@ -1,6 +1,7 @@
-# Course Management System
 
-Welcome to the **Course Management System**! This project is a robust and scalable web application designed to manage users, products, and updates efficiently. Built with modern technologies, it ensures secure authentication, seamless data handling, and a user-friendly interface.
+# Product Management System
+
+Welcome to the Product Management System! This project is a scalable web service system that efficiently manages users, products, and updates. Built with modern technologies, it ensures secure authentication, seamless data handling, and a user-friendly interface.
 
 ## Features
 
@@ -16,33 +17,10 @@ Welcome to the **Course Management System**! This project is a robust and scalab
 - **Database**: PostgreSQL with Prisma ORM
 - **Authentication**: JWT, bcrypt
 - **Environment Management**: dotenv
-- **Logging**: morgan
+- **API Logging**: morgan
 - **CORS Handling**: cors
 - **TypeScript**: Ensuring type safety and better development experience
 
-## Project Structure
-
-```
-.env
-.gitignore
-package.json
-prisma/
-	migrations/
-		20241212120350_init/
-			migration.sql
-		migration_lock.toml
-	schema.prisma
-src/
-	db.ts
-	handlers/
-		user.ts
-	index.ts
-	modules/
-		auth.ts
-	router.ts
-	server.ts
-tsconfig.json
-```
 
 ## Getting Started
 
@@ -81,14 +59,9 @@ tsconfig.json
 6. **Access the application**:
     Open your browser and navigate to `http://localhost:3001`.
 
-## Contributing
-
-Feel free to fork this repository and contribute by submitting a pull request. We appreciate your help in making this project better!
 
 ## License
 
 This project is licensed under the ISC License.
 
 ---
-
-This description highlights the key features and technologies used in your project, making it an attractive addition to your portfolio.
